@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+
+    <label for="firstValue">First Value</label>
+    <input id="firstValue" type="text" placeholder="insert number here" oninput = "setnum1(event)">
+
+    <label for="secondValue">Second Value</label>
+    <input id="secondValue" type="text" placeholder="insert number here" oninput = "setnum2(event)">
+
+    <button onclick ="add(event)">+</button>
+    <button onclick="subtract(event)">-</button>
+    <button onclick="multiply(event)">*</button>
+    <button onclick="divide(event)">÷</button> 
+    <button onclick="equals(event)">=</button>
+    
+      
+
+    <div id="history" type="text" placeholder="previous history">
+    
+    </div>
+
+    <div id="results">
+
+    </div>
+    
+</body>
+<script>
+    let num1 = 0;
+    let num2 = 0;
+    let operands = null; 
+    let history = [];
+
+    function setnum1(event = new Event()) {
+        num1 = Number(event.target.value);
+        
+    }
+
+    function setnum2(event = new Event()) {
+        num2 = Number(event.target.value);
+        
+    }
+
+    function add(event = new Event()) {
+        operands = "+";
+      
+        
+    }
+
+    function subtract(event = new Event()) {
+        operands = "-";
+        
+    }
+
+    function multiply(event = new Event()) {
+        operands = "*";
+        
+    }
+
+    function divide(event = new Event()) {
+        operands = "/";
+    }
+
+    function renderVal(stuffIPrint, elementILook) {
+        const docElement = document.getElementById(elementILook);
+
+        docElement.innerText = stuffIPrint;
+    }
+
+    
+
+    function equals(event = new Event()) {
+        let total = 0;
+        
+        if(operands == "+") {
+            total = num1 + num2;
+        } else if (operands === "-") {
+            total = num1 - num2;
+        } else if (operands === "*") {
+            total = num1 * num2;
+        } else if (operands === "/") {
+            total = num1 / num2;
+        } else {
+            total = "Operation not found";
+        }
+
+        current = (num1 + " " + operands + " " + num2 + " = " + total + "\n");
+        history.push(current);
+        console.log(history);
+
+        renderVal(total, "results");
+        renderVal(history, "history");
+
+
+    }
+</script>
+
+<!-- create html element (not an alert)
+// div that has ID for results 
+// use the values of the operands to make a heading and put it in a div 
+// store info in an array then render that list using an arrary
+// clear old history -->
+</html> 
